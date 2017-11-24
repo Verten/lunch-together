@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'userRegistrationView',
   data() {
@@ -25,6 +25,12 @@ export default {
       username: '',
       password: '',
     }
+  },
+  computed: {
+    ...mapGetters(['getUser']),
+    user() {
+      return this.getUser
+    },
   },
   methods: {
     ...mapActions(['postUser']),
@@ -34,6 +40,12 @@ export default {
       user.password = this.password
       this.postUser(user)
     },
+  },
+  beforeUpdate(){
+    if(this.user !== null){
+      console.debug('user success registed, ', this.user.username)
+      this.$router.push({path:'/'})
+    }
   },
 }
 </script>

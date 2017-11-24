@@ -40,7 +40,7 @@ const userModule = {
       userObject.set('password', user.password)
       userObject.save().then(
         _user => {
-          console.debug('success registration user,', _user.id)
+          console.debug('success registration user,', _user)
           commit({
             type: MutationTypes.POST_USER,
             user,
