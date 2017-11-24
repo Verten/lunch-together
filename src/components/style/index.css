@@ -1,0 +1,19 @@
+ul > li {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  display: inline-block;
+}
+
+.avatar img {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.name {
+  display: inline-block;
+  margin: 0 0 0 8px;
+}
