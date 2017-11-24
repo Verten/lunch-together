@@ -1,23 +1,18 @@
-import * as MutationTypes from "./mutation_type";
+import * as MutationTypes from './mutation_type'
 
 export default {
   [MutationTypes.ERROR]: (state, payload) => {
-    state.error = payload.error;
-    state.isProcessing = false;
+    state.error = payload.error
+    state.isProcessing = false
   },
-  [MutationTypes.EMOJI_REQUEST]: state => {
-    state.isProcessing = true;
+  [MutationTypes.ORDER_REQUEST || MutationTypes.USER_REQUEST]: state => {
+    state.isProcessing = true
   },
-  [MutationTypes.USER_REQUEST]: state => {
-    state.isProcessing = true;
+  [MutationTypes.FETCH_USER_LIST ||
+  MutationTypes.FETCH_USER ||
+  MutationTypes.POST_USER ||
+  MutationTypes.POST_ORDER ||
+  MutationTypes.FETCH_ORDER_LIST]: state => {
+    state.isProcessing = false
   },
-  [MutationTypes.FETCH_USER_LIST]: state => {
-    state.isProcessing = false;
-  },
-  [MutationTypes.FETCH_USER]: state => {
-    state.isProcessing = false;
-  },
-  [MutationTypes.FETCH_EMOJI_LIST]: state => {
-    state.isProcessing = false;
-  }
-};
+}

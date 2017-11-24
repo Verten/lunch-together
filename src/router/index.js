@@ -1,34 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import helloWorld from '../components/helloWorld.vue'
-import emojisList from '../components/emojisList.vue'
-import userList from '../components/userList.vue'
-import userDetail from '../components/userDetail.vue'
+import login from '../views/user/login.vue'
+import registration from '../views/user/registration.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'helloWorld',
-    component: helloWorld,
+    name: 'login',
+    component: login,
   },
   {
-    path: '/user',
-    name: 'userList',
-    component: userList,
-  },
-  {
-    path: '/user/:name',
-    name: 'userDetail',
-    component: userDetail,
-    props: true,
-  },
-  {
-    path: '/emoji',
-    name: 'emojisList',
-    component: emojisList,
+    path: '/registration',
+    name: 'registration',
+    component: registration,
   },
 ]
 

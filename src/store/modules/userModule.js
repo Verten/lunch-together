@@ -1,6 +1,7 @@
 import * as MutationTypes from '../mutation_type'
 import * as API from '../../api'
 import { callAPI } from '../../utilities'
+import AV from '../../leancloud/storage'
 
 const userModule = {
   state: {
@@ -8,14 +9,13 @@ const userModule = {
     users: [],
   },
   mutations: {
-    [MutationTypes.USER_REQUEST]: state => {
-      state.user = null
-      state.users = []
-    },
     [MutationTypes.FETCH_USER_LIST]: (state, payload) => {
       state.users = payload.users
     },
     [MutationTypes.FETCH_USER]: (state, payload) => {
+      state.user = payload.user
+    },
+    [MutationTypes.POST_USER]: (state, payload) => {
       state.user = payload.user
     },
   },
@@ -28,57 +28,32 @@ const userModule = {
     },
   },
   actions: {
-    fetchUsers: ({ commit }) => {
-      const config = {
-        method: 'get',
-        url: `${API.getUsersUrl()}`,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      }
-      const onRequest = () => ({
-        type: MutationTypes.USER_REQUEST,
-      })
-      const onRequestSuccess = users => {
-        return {
-          type: MutationTypes.FETCH_USER_LIST,
-          users,
-        }
-      }
-      const onRequestFailure = error => {
-        return {
-          type: MutationTypes.ERROR,
-          error,
-        }
-      }
-      callAPI({ commit }, config, onRequest, onRequestSuccess, onRequestFailure)
+    fetchUsers: ({ commit }) => {},
+    fetchUser: ({ commit }, user) => {
+      console.debug('login with user: ', user)
     },
-    fetchUser: ({ commit }, name) => {
-      const config = {
-        method: 'get',
-        url: `${API.getUsersUrl()}/${name}`,
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
+    postUser: ({ commit }, user) => {
+      console.debug('registration with user: ', user)
+      let UserObject = AV.Object.extend('_User')
+      let userObject = new UserObject()
+      userObject.set('username', user.username)
+      userObject.set('password', user.password)
+      userObject.save().then(
+        _user => {
+          console.debug('success registration user,', _user.id)
+          commit({
+            type: MutationTypes.POST_USER,
+            user,
+          })
         },
-      }
-      const onRequest = () => ({
-        type: MutationTypes.USER_REQUEST,
-      })
-      const onRequestSuccess = user => {
-        return {
-          type: MutationTypes.FETCH_USER,
-          user,
+        error => {
+          console.error(error)
+          commit({
+            type: MutationTypes.ERROR,
+            error,
+          })
         }
-      }
-      const onRequestFailure = error => {
-        return {
-          type: MutationTypes.ERROR,
-          error,
-        }
-      }
-      callAPI({ commit }, config, onRequest, onRequestSuccess, onRequestFailure)
+      )
     },
   },
 }

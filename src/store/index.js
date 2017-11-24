@@ -4,7 +4,7 @@ import * as MutationTypes from "./mutation_type";
 import * as getters from './getters'
 import mutations from './mutations'
 import userModule from "./modules/userModule";
-import emojiModule from "./modules/emojiModule";
+import orderModule from "./modules/orderModule";
 
 Vue.use(Vuex);
 
@@ -15,7 +15,7 @@ export default new Vuex.Store({
   },
   modules: {
     userModule,
-    emojiModule
+    orderModule
   },
   mutations,
   getters
