@@ -1,24 +1,30 @@
 <template>
-  <section class="user">
-    <div class="login">
-        <div>
-          <label for="username">User Name:</label>
-          <input type="text" placeholder="input your username" name="username" id="username" v-model="username"/>
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" placeholder="input your password" v-model="password"/>
-        </div>
-        <div>
-          <button @click="login">Login</button> 
-          Or 
-          <router-link :to="'/registration'" class="link">
-            Regist
-          </router-link>
-        </div>
-    </div>
-  </section>
+<div class="wrapper">
+	<div class="container">
+		<h1>Welcome</h1>
+		<form class="form">
+			<input type="text" placeholder="Username" name="username" id="username" v-model="username">
+			<input type="password" placeholder="Password" name="password" id="password" v-model="password">
+			<button type="button" id="login-button" @click="login">Login</button>
+      <button type="button" class="registration-button" id="registration-button" @click="registration">Registration</button>
+		</form>
+	</div>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
 </template>
+
+<style src="../../components/style/login.css"></style>
 
 <script>
 import { mapActions } from 'vuex'
@@ -33,10 +39,15 @@ export default {
   methods: {
     ...mapActions(['fetchUser']),
     login() {
+      $('form').fadeOut(500)
+      $('.wrapper').addClass('form-success')
       const user = {}
       user.username = this.username
       user.password = this.password
       this.fetchUser(user)
+    },
+    registration() {
+      console.debug('redirect to registration page')
     },
   },
 }
