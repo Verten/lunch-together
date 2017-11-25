@@ -49,17 +49,16 @@ export default {
   methods: {
     ...mapActions(['postUser']),
     registration() {
-      this.postUser(this.user)
+      //for the async action, we can return a promise
+      this.postUser(this.user).then((_user) => {
+        this.$router.push({ path: '/' })
+      }, e => {
+        console.error('error', e)
+      })
     },
     back() {
       this.$router.push({ path: '/' })
     },
-  },
-  beforeUpdate() {
-    if (this.registrationUser !== null) {
-      console.debug('user success registed, ', this.user.username)
-      this.$router.push({ path: '/' })
-    }
   },
 }
 </script>

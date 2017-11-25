@@ -33,28 +33,31 @@ const userModule = {
       console.debug('login with user: ', user)
     },
     postUser: ({ commit }, user) => {
-      console.debug('registration with user: ', user)
-      let UserObject = AV.Object.extend('Order_User')
-      let userObject = new UserObject()
-      userObject.set('username', user.username)
-      userObject.set('password', user.password)
-      userObject.set('email', user.password)
-      userObject.save().then(
-        _user => {
-          console.debug('success registration user,', _user)
-          commit({
-            type: MutationTypes.POST_USER,
-            user,
-          })
-        },
-        error => {
-          console.error(error)
-          commit({
-            type: MutationTypes.ERROR,
-            error,
-          })
-        }
-      )
+      return new Promise((resolve, reject) => {
+        console.debug('registration with user: ', user)
+        let UserObject = AV.Object.extend('Order_User')
+        let userObject = new UserObject()
+        userObject.set('username', user.username)
+        userObject.set('password', user.password)
+        userObject.set('email', user.password)
+        userObject.save().then(
+          _user => {
+            console.debug('success registration user,', _user)
+            commit({
+              type: MutationTypes.POST_USER,
+              user,
+            })
+            resolve(_user)
+          },
+          error => {
+            commit({
+              type: MutationTypes.ERROR,
+              error,
+            })
+            reject(error)
+          }
+        )
+      })
     },
   },
 }
