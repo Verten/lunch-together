@@ -1,20 +1,31 @@
 <template>
-  <section class="user">
-    <div class="registration">
-        <div>
-          <label for="username">User Name:</label>
-          <input type="text" placeholder="input your username" name="username" id="username" v-model="username"/>
-        </div>
-        <div>
-          <label for="password">Password:</label>
-          <input type="password" name="password" id="password" placeholder="input your password" v-model="password"/>
-        </div>
-        <div>
-          <button @click="registration">regist</button> 
-        </div>
-    </div>
-  </section>
+<div class="wrapper">
+	<div class="container">
+		<h1>Welcome</h1>
+		<form class="form">
+			<input type="text" placeholder="Username" name="username" id="username" v-model="user.username"/>
+			<input type="password" placeholder="Password" name="password" id="password" v-model="user.password"/>
+      <input type="text" placeholder="Email" name="email" id="email" v-model="user.email"/>
+			<button type="button" id="login-button" @click="registration">Regist</button>
+      <button type="button" id="second-button" class="second-button" @click="back">Back</button>
+		</form>
+	</div>
+	<ul class="bg-bubbles">
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</div>
 </template>
+
+<style src="../../components/style/login.css"></style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
@@ -22,29 +33,32 @@ export default {
   name: 'userRegistrationView',
   data() {
     return {
-      username: '',
-      password: '',
+      user: {
+        username: '',
+        password: '',
+        email: '',
+      },
     }
   },
   computed: {
     ...mapGetters(['getUser']),
-    user() {
+    registrationUser() {
       return this.getUser
     },
   },
   methods: {
     ...mapActions(['postUser']),
     registration() {
-      const user = {}
-      user.username = this.username
-      user.password = this.password
-      this.postUser(user)
+      this.postUser(this.user)
+    },
+    back() {
+      this.$router.push({ path: '/' })
     },
   },
-  beforeUpdate(){
-    if(this.user !== null){
+  beforeUpdate() {
+    if (this.registrationUser !== null) {
       console.debug('user success registed, ', this.user.username)
-      this.$router.push({path:'/'})
+      this.$router.push({ path: '/' })
     }
   },
 }

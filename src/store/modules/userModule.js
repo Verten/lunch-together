@@ -34,10 +34,11 @@ const userModule = {
     },
     postUser: ({ commit }, user) => {
       console.debug('registration with user: ', user)
-      let UserObject = AV.Object.extend('_User')
+      let UserObject = AV.Object.extend('Order_User')
       let userObject = new UserObject()
       userObject.set('username', user.username)
       userObject.set('password', user.password)
+      userObject.set('email', user.password)
       userObject.save().then(
         _user => {
           console.debug('success registration user,', _user)

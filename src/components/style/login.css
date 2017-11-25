@@ -100,8 +100,7 @@ form input:focus {
   width: 300px;
   color: #53e3a6;
 }
-form button,
-.registration-button {
+form button, .second-button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -232,10 +231,10 @@ form button:hover {
     transform: translateY(-1500px) rotate(600deg);
   }
 }
-.registration-button {
+.second-button {
   color: #ffffff;
   background-color: #53e3a6;
 }
-.registration-button:hover {
+.second-button:hover {
   background-color: #4fd49b;
 }

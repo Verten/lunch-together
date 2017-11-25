@@ -6,7 +6,7 @@
 			<input type="text" placeholder="Username" name="username" id="username" v-model="username">
 			<input type="password" placeholder="Password" name="password" id="password" v-model="password">
 			<button type="button" id="login-button" @click="login">Login</button>
-      <button type="button" class="registration-button" id="registration-button" @click="registration">Registration</button>
+      <button type="button" class="second-button" id="registration-button" @click="registration">Registration</button>
 		</form>
 	</div>
 	<ul class="bg-bubbles">
@@ -48,6 +48,7 @@ export default {
     },
     registration() {
       console.debug('redirect to registration page')
+      this.$router.push({path:'/registration'})
     },
   },
 }
