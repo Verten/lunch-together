@@ -238,3 +238,6 @@ form button:hover {
 .second-button:hover {
   background-color: #4fd49b;
 }
+.error{
+  color: red;
+}

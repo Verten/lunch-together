@@ -30,24 +30,42 @@ const userModule = {
   actions: {
     fetchUsers: ({ commit }) => {},
     fetchUser: ({ commit }, user) => {
-      console.debug('login with user: ', user)
+      return new Promise((resolve, reject) => {
+        console.debug('login with user: ', user)
+        AV.User.logIn(user.username, user.password).then(
+          loginedUser => {
+            console.debug('success logined user,', loginedUser)
+            commit({
+              type: MutationTypes.FETCH_USER,
+              user,
+            })
+            resolve(loginedUser)
+          },
+          error => {
+            commit({
+              type: MutationTypes.ERROR,
+              error,
+            })
+            reject(error)
+          }
+        )
+      })
     },
     postUser: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
         console.debug('registration with user: ', user)
-        let UserObject = AV.Object.extend('Order_User')
-        let userObject = new UserObject()
-        userObject.set('username', user.username)
-        userObject.set('password', user.password)
-        userObject.set('email', user.password)
-        userObject.save().then(
-          _user => {
-            console.debug('success registration user,', _user)
+        let loginUser = new AV.User()
+        for (let key in user) {
+          loginUser.set(`${key}`, user[key])
+        }
+        loginUser.signUp().then(
+          registedUser => {
+            console.debug('success registration user,', registedUser)
             commit({
               type: MutationTypes.POST_USER,
               user,
             })
-            resolve(_user)
+            resolve(registedUser)
           },
           error => {
             commit({
