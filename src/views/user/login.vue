@@ -28,6 +28,7 @@
 <style src="../../components/style/login.css"></style>
 
 <script>
+/* eslint no-undef: 0 */
 import { mapActions } from 'vuex'
 export default {
   name: 'userLoginView',
@@ -43,20 +44,23 @@ export default {
   methods: {
     ...mapActions(['fetchUser']),
     login() {
+      $('form').fadeOut(500)
+      $('.wrapper').addClass('form-success')
       this.fetchUser(this.user).then(
         loginedUser => {
-          $('form').fadeOut(500)
-          $('.wrapper').addClass('form-success')
-          console.debug('success logined!')
+          const { redirect = '/order' } = this.$route.query
+          this.$router.push({
+            path: `${redirect}`,
+          })
         },
         error => {
-          console.debug(error)
           this.error = error
+          $('form').fadeIn(500)
+          $('.wrapper').removeClass('form-success')
         }
       )
     },
     registration() {
-      console.debug('redirect to registration page')
       this.$router.push({ path: '/registration' })
     },
   },

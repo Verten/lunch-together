@@ -21,6 +21,7 @@ module.exports = {
     "no-lone-blocks": 0,
     "jsx-quotes": [1, "prefer-single"],
     "import/default": 1,
+    "space-before-function-paren": ["error", "never"],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
   }
 }

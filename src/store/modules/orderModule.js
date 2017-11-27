@@ -1,6 +1,4 @@
 import * as MutationTypes from '../mutation_type'
-import * as API from '../../api'
-import { callAPI } from '../../utilities'
 
 const orderModule = {
   state: {
@@ -17,10 +15,10 @@ const orderModule = {
   },
   getters: {
     getOrders: state => {
-      state.orders
+      return state.orders
     },
     getOrder: state => {
-      state.order
+      return state.order
     },
   },
   actions: {

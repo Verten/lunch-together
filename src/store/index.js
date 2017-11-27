@@ -1,22 +1,22 @@
-import Vue from "vue";
-import Vuex from "vuex";
-import * as MutationTypes from "./mutation_type";
+import Vue from 'vue'
+import Vuex from 'vuex'
 import * as getters from './getters'
 import mutations from './mutations'
-import userModule from "./modules/userModule";
-import orderModule from "./modules/orderModule";
+import userModule from './modules/userModule'
+import orderModule from './modules/orderModule'
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    title: 'NEW ORDER',
     error: null,
-    isProcessing: false
+    isProcessing: false,
   },
   modules: {
     userModule,
-    orderModule
+    orderModule,
   },
   mutations,
-  getters
-});
+  getters,
+})

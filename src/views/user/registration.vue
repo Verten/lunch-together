@@ -8,6 +8,7 @@
       <input type="text" placeholder="Email" name="email" id="email" v-model="user.email"/>
 			<button type="button" id="login-button" @click="registration">Regist</button>
       <button type="button" id="second-button" class="second-button" @click="back">Back</button>
+      <div class="error" v-if="error !== null">{{error.rawMessage}}</div>
 		</form>
 	</div>
 	<ul class="bg-bubbles">
@@ -38,6 +39,7 @@ export default {
         password: '',
         email: '',
       },
+      error: null,
     }
   },
   computed: {
@@ -49,12 +51,15 @@ export default {
   methods: {
     ...mapActions(['postUser']),
     registration() {
-      //for the async action, we can return a promise
-      this.postUser(this.user).then((_user) => {
-        this.$router.push({ path: '/' })
-      }, e => {
-        console.error('error', e)
-      })
+      // for the async action, we can return a promise
+      this.postUser(this.user).then(
+        _user => {
+          this.$router.push({ path: '/' })
+        },
+        error => {
+          this.error = error
+        }
+      )
     },
     back() {
       this.$router.push({ path: '/' })

@@ -8,3 +8,5 @@ export const POST_USER = 'POST_USER'
 export const ORDER_REQUEST = 'ORDER_REQUEST'
 export const POST_ORDER = 'POST_ORDER'
 export const FETCH_ORDER_LIST = 'FETCH_ORDER_LIST'
+
+export const SELECT_TITLE = 'SELECT_TITLE'

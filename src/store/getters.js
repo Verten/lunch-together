@@ -4,3 +4,6 @@ export const isProcessing = state => {
 export const getError = state => {
   return state.error
 }
+export const getTitle = state => {
+  return state.title
+}
