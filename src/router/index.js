@@ -22,7 +22,6 @@ const routes = [
   },
   {
     path: '/order',
-    name: 'orderHome',
     component: orderHome,
     children: [
       {

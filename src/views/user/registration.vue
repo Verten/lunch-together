@@ -2,7 +2,7 @@
 <div class="wrapper">
 	<div class="container">
 		<h1>Welcome</h1>
-		<form class="form">
+		<form >
 			<input type="text" placeholder="Username" name="username" id="username" v-model="user.username"/>
 			<input type="password" placeholder="Password" name="password" id="password" v-model="user.password"/>
       <input type="text" placeholder="Email" name="email" id="email" v-model="user.email"/>

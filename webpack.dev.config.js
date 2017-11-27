@@ -4,12 +4,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, './src/index.html'),
-    }),
-  ],
   entry: [
     'webpack/hot/dev-server',
     'webpack-dev-server/client?http://localhost:8080/',
@@ -52,7 +46,7 @@ module.exports = {
           loader: 'vue-loader',
           options: {
             loaders: {
-              stylus: ExtractTextPlugin.extract({
+              css: ExtractTextPlugin.extract({
                 use: 'css-loader?{"minimize":{"discardComments":{"removeAll":true}}}',
                 fallback: 'vue-style-loader',
               }),
@@ -62,4 +56,15 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+    }),
+    new ExtractTextPlugin({
+      filename: 'build.css',
+      disable: false,
+      allChunks: true,
+    }),
+  ],
 }

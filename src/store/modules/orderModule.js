@@ -1,4 +1,5 @@
 import * as MutationTypes from '../mutation_type'
+import Order from '../../leancloud/models/order'
 
 const orderModule = {
   state: {
@@ -23,7 +24,30 @@ const orderModule = {
   },
   actions: {
     fetchOrders: ({ commit }) => {},
-    postOrder: ({ commit }, order) => {},
+    postOrder: ({ commit }, order) => {
+      return new Promise((resolve, reject) => {
+        let savedOrder = new Order()
+        for (const key in order) {
+          savedOrder.set(`${key}`, order[key])
+        }
+        savedOrder.save().then(
+          _order => {
+            commit({
+              type: MutationTypes.POST_ORDER,
+              order,
+            })
+            resolve(_order)
+          },
+          error => {
+            commit({
+              type: MutationTypes.ERROR,
+              error,
+            })
+            reject(error)
+          }
+        )
+      })
+    },
   },
 }
 

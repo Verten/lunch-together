@@ -12,6 +12,7 @@
 </template>
 
 <style src="../../components/style/dashboard.css"></style>
+<style src="../../components/style/order.css"></style>
 
 <script>
 import navigatorView from '../../components/navigator.vue'

@@ -67,6 +67,8 @@ body :-ms-input-placeholder {
   -webkit-transition-timing-function: ease-in-put;
   transition-timing-function: ease-in-put;
   font-weight: 200;
+  background-color: transparent;
+  border-bottom: none;
 }
 form {
   padding: 20px 0 10px 0;
