@@ -1,5 +1,3 @@
-require("babel-polyfill"); //Add for IE10, IE11 support.
-require("intl"); //Add for intl API support of IE10.
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
