@@ -32,6 +32,9 @@ const userModule = {
     fetchUsers: ({ commit }) => {},
     fetchUser: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
+        commit({
+          type: MutationTypes.USER_REQUEST,
+        })
         AV.User.logIn(user.username, user.password).then(
           loginedUser => {
             commit({
@@ -52,6 +55,9 @@ const userModule = {
     },
     postUser: ({ commit }, user) => {
       return new Promise((resolve, reject) => {
+        commit({
+          type: MutationTypes.USER_REQUEST,
+        })
         let loginUser = new AV.User()
         for (let key in user) {
           loginUser.set(`${key}`, user[key])

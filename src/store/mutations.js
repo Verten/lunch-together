@@ -5,10 +5,25 @@ export default {
     state.error = payload.error
     state.isProcessing = false
   },
-  [MutationTypes.ORDER_REQUEST || MutationTypes.USER_REQUEST]: state => {
+  [MutationTypes.ORDER_REQUEST]: state => {
     state.isProcessing = true
   },
-  [MutationTypes.FETCH_USER_LIST || MutationTypes.FETCH_USER || MutationTypes.POST_USER || MutationTypes.POST_ORDER || MutationTypes.FETCH_ORDER_LIST]: state => {
+  [MutationTypes.USER_REQUEST]: state => {
+    state.isProcessing = true
+  },
+  [MutationTypes.FETCH_USER_LIST]: state => {
+    state.isProcessing = false
+  },
+  [MutationTypes.FETCH_USER]: state => {
+    state.isProcessing = false
+  },
+  [MutationTypes.POST_USER]: state => {
+    state.isProcessing = false
+  },
+  [MutationTypes.POST_ORDER]: state => {
+    state.isProcessing = false
+  },
+  [MutationTypes.FETCH_ORDER_LIST]: state => {
     state.isProcessing = false
   },
   [MutationTypes.SELECT_TITLE]: (state, title) => {

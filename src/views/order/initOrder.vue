@@ -24,6 +24,7 @@
 /* eslint no-undef: 0 */
 import { mapActions, mapGetters } from 'vuex'
 import { isEmpty } from 'lodash'
+import AV from '../../leancloud/storage'
 
 export default {
   name: 'orderInit',
@@ -56,7 +57,7 @@ export default {
       }
     },
     postOrder() {
-      this.order.owner = this.getOwn.username
+      this.order.owner = AV.User.current()
       if (isEmpty(this.order.name)) {
         this.error = {
           rawMessage: 'please input order name',
@@ -68,6 +69,7 @@ export default {
           this.info = {
             rawMessage: 'success',
           }
+          this.error = null
           this.order = {
             name: '',
             price: 0,
@@ -76,6 +78,7 @@ export default {
         },
         error => {
           this.error = error
+          this.info = null
         }
       )
     },

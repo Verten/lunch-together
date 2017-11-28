@@ -1,4 +1,5 @@
 export const ERROR = 'ERROR'
+export const REQUEST = 'REQUEST'
 
 export const USER_REQUEST = 'USER_REQUEST'
 export const FETCH_USER = 'FETCH_USER'
