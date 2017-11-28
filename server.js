@@ -18,7 +18,7 @@ app.get('/*', function (request, response){
   response.sendFile(path.resolve(__dirname, 'build', 'index.html'))
 })
 
-app.listen(3003, function(err) {
+app.listen(process.env.LEANCLOUD_APP_PORT, function(err) {
   if (err) {
     console.log(err)
     return
