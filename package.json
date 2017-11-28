@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish ":"webpack --display-error-details -p --config webpack.prod.config.js",
+    "prepublish ": "webpack --display-error-details -p --config webpack.prod.config.js",
     "build": "webpack --display-error-details -p --config webpack.prod.config.js",
     "startdev": "node devServer.js"
   },
@@ -50,6 +50,7 @@
     "html-webpack-plugin": "^2.22.0",
     "leancloud-storage": "^3.4.1",
     "leanengine": "^3.0.2",
+    "lodash": "^4.17.4",
     "style-loader": "^0.18.0",
     "vue": "^2.5.8",
     "vue-loader": "^13.5.0",

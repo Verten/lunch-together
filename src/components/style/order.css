@@ -68,5 +68,8 @@ label{
   background-color: #3fbd88;
 }
 .success{
-  color: #3fbd88;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  background-color: #3fbd88 !important;
 }
