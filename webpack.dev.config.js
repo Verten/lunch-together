@@ -5,8 +5,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080/',
+    // 'webpack/hot/dev-server',
+    // 'webpack-dev-server/client?http://localhost:8080/',
+    'webpack-hot-middleware/client',
     path.resolve(__dirname, './src/index.js'),
   ],
   resolve: {
@@ -17,13 +18,13 @@ module.exports = {
     filename: 'bundle.js',
     publicPath: '/',
   },
-  devServer: {
-    historyApiFallback: {
-      index: '/index.html',
-    },
-    host: '127.0.0.1',
-    noInfo: true,
-  },
+  // devServer: {
+  //   historyApiFallback: {
+  //     index: '/index.html',
+  //   },
+  //   host: '127.0.0.1',
+  //   noInfo: true,
+  // },
   module: {
     loaders: [
       {

@@ -28,7 +28,7 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'build/index.html'))
 })
 
-app.listen(3003, 'localhost', function(err) {
+app.listen(3003, function(err) {
   if (err) {
     console.log(err)
     return
