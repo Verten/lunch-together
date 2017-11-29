@@ -3,7 +3,7 @@
     <span class="bckg"></span>
     <navigator-view></navigator-view>
     <main>
-      <header-view :user="user"></header-view>
+      <header-view :user="user.attributes"></header-view>
       <article>
         <router-view></router-view>
       </article>

@@ -6,6 +6,7 @@ import registration from '../views/user/registration.vue'
 import orderHome from '../views/order/home.vue'
 import initOrder from '../views/order/initOrder.vue'
 import listOrder from '../views/order/listOrder.vue'
+import AV from '../leancloud/storage'
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,9 @@ const routes = [
     path: '/',
     name: 'login',
     component: login,
+    meta: {
+      checkAlreadyLogined: true,
+    },
   },
   {
     path: '/registration',
@@ -48,8 +52,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (store.getters.isAuthenticated) {
+    if (AV.User.current()) {
+      // store.getters.isAuthenticated
       next()
+      store.commit({
+        type: 'FETCH_USER',
+        user: AV.User.current(),
+      })
     } else {
       next({
         path: '/',
@@ -57,6 +66,18 @@ router.beforeEach((to, from, next) => {
           redirect: to.fullPath,
         },
       })
+    }
+  } else if (to.matched.some(record => record.meta.checkAlreadyLogined)) {
+    if (AV.User.current()) {
+      next({
+        path: '/order',
+      })
+      store.commit({
+        type: 'FETCH_USER',
+        user: AV.User.current(),
+      })
+    } else {
+      next()
     }
   } else {
     next()
