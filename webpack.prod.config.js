@@ -29,7 +29,7 @@ module.exports = {
       {
         test: /\.js?$/,
         loaders: ['babel-loader'],
-        include: [resolve('src')],
+        exclude: path.resolve(__dirname, 'node_modules'),
       },
       {
         test: /\.vue$/,

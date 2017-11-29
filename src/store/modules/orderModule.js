@@ -29,7 +29,7 @@ const orderModule = {
         commit({
           type: MutationTypes.ORDER_REQUEST,
         })
-        const OrderQuery = new AV.Query('Order')
+        const OrderQuery = new AV.Query('OrderHistory')
         OrderQuery.descending('createdAt')
         if (owner === 'self') {
           OrderQuery.equalTo('owner', AV.User.current())

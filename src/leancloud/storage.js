@@ -2,7 +2,7 @@
  * @Author: ebinhon 
  * @Date: 2017-11-24 16:54:56 
  * @Last Modified by: ebinhon
- * @Last Modified time: 2017-11-28 17:16:54
+ * @Last Modified time: 2017-11-29 21:24:53
  */
 import Order from './models/order'
 import AV from 'leancloud-storage'
