@@ -1,5 +1,5 @@
 import * as MutationTypes from '../mutation_type'
-import Order from '../../leancloud/models/order'
+// import Order from '../../leancloud/models/order'
 import AV from '../../leancloud/storage'
 
 const orderModule = {
@@ -58,6 +58,7 @@ const orderModule = {
         commit({
           type: MutationTypes.ORDER_REQUEST,
         })
+        let Order = AV.Object.extend('OrderHistory')
         let savedOrder = new Order()
         for (const key in order) {
           savedOrder.set(`${key}`, order[key])
