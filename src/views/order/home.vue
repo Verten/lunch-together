@@ -4,7 +4,7 @@
     <navigator-view></navigator-view>
     <main>
       <header-view :user="user"></header-view>
-      <article class="larg">
+      <article>
         <router-view></router-view>
       </article>
     </main>

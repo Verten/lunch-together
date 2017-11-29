@@ -5,8 +5,8 @@
 		<form>
 			<input type="text" placeholder="Username" name="username" id="username" v-model="user.username">
 			<input type="password" placeholder="Password" name="password" id="password" v-model="user.password">
-			<button type="button" id="login-button" @click="login">Login</button>
-      <button type="button" class="second-button" id="registration-button" @click="registration">Registration</button>
+			<button type="button" id="login-button" @click="login">Sign in</button>
+      <button type="button" class="second-button" id="registration-button" @click="registration">Sign up</button>
       <div class="error" v-if="error !== null">{{error.rawMessage}}</div>
 		</form>
 	</div>

@@ -1,5 +1,5 @@
 import * as MutationTypes from '../mutation_type'
-import Order, { OrderQuery } from '../../leancloud/models/order'
+import Order from '../../leancloud/models/order'
 import AV from '../../leancloud/storage'
 
 const orderModule = {
@@ -24,12 +24,16 @@ const orderModule = {
     },
   },
   actions: {
-    fetchOrders: ({ commit }) => {
+    fetchOrders: ({ commit }, owner) => {
       return new Promise((resolve, reject) => {
         commit({
           type: MutationTypes.ORDER_REQUEST,
         })
-        OrderQuery.equalTo('owner', AV.User.current())
+        const OrderQuery = new AV.Query('Order')
+        OrderQuery.descending('createdAt')
+        if (owner === 'self') {
+          OrderQuery.equalTo('owner', AV.User.current())
+        }
         OrderQuery.include('owner')
         OrderQuery.find().then(
           orders => {

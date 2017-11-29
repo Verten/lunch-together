@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="larg">
     <div>
       <h3 class="form-title">Order Information</h3>
       <div class="form">
