@@ -2,11 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store'
 import login from '../views/user/login.vue'
-import registration from '../views/user/registration.vue'
-import orderHome from '../views/order/home.vue'
+// import registration from '../views/user/registration.vue'
+// import orderHome from '../views/order/home.vue'
 import initOrder from '../views/order/initOrder.vue'
 import listOrder from '../views/order/listOrder.vue'
 import AV from '../leancloud/storage'
+
+const orderHome = () => import(/* webpackChunkName: "order" */ '../views/order/home.vue')
+const registration = () => import(/* webpackChunkName: "registration" */ '../views/user/registration.vue')
 
 Vue.use(VueRouter)
 

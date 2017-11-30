@@ -1,6 +1,6 @@
-var path = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
+let path = require('path')
+let webpack = require('webpack')
+let HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 const resolve = (...dir) => path.resolve(__dirname, ...dir)
@@ -13,7 +13,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './build'),
     publicPath: '/',
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
   },
   module: {
     loaders: [
@@ -49,7 +50,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production')
+      'process.env.NODE_ENV': JSON.stringify('production'),
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
