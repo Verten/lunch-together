@@ -3,8 +3,6 @@ let webpack = require('webpack')
 let HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-const resolve = (...dir) => path.resolve(__dirname, ...dir)
-
 module.exports = {
   entry: [path.resolve(__dirname, './src/index.js')],
   resolve: {
